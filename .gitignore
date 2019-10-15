@@ -1,0 +1,26 @@
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+*$py.class
+
+# Build, packaging
+/bin
+/build
+/dist
+/target
+MANIFEST
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Environment
+env/
+
+# Settings files that should not be committed.
+# *settings_template.py will not be affected
+*settings.py
+
