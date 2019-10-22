@@ -1,4 +1,5 @@
 import logging
+import string
 import pyffx
 
 from .util import generate_token_bytes
@@ -21,11 +22,16 @@ class Pseudonymizer():
 # Local:
 # In: CSV row (a list)
 # Out: updates CSV row (a list)
+# Throws ValueError and perhaps other exceptions
 
     def update_row(self, column_num, column_type, row):
+        logging.debug('Pseudonymize {}'.format(row[column_num-1]))
         if column_type == 'num':
-            logging.debug('Pseudonymize {}'.format(row[column_num-1]))
             encrypter = pyffx.Integer(self.secret_key_bytes, len(row[column_num-1]))
+            row[column_num-1] = encrypter.encrypt(row[column_num-1])
+        elif column_type == 'asc':
+            print(string.printable)
+            encrypter = pyffx.String(self.secret_key_bytes, alphabet = string.printable, length = len(row[column_num-1]))
             row[column_num-1] = encrypter.encrypt(row[column_num-1])
         return row
    
