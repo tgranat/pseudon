@@ -1,13 +1,19 @@
 import secrets
 import csv
 import random
+import logging
 
+logger = logging.getLogger(__name__)
+
+# Return byte string containing nbytes number of bytes.
 def generate_token_bytes(nbytes = 16):
     return secrets.token_bytes(nbytes)
-    
+# Return a random text string, in hexadecimal. The string has nbytes random bytes, 
+# each byte converted to two hex digits. 
 def generate_token_hex(nbytes = 16):
     return secrets.token_hex(nbytes)
-
+# Return a random URL-safe text string, containing nbytes random bytes.
+# The text is Base64 encoded, so on average each byte results in approximately 1.3 characters. 
 def generate_token_urlsafe(nbytes = 16):
     return secrets.token_urlsafe(nbytes)
 
@@ -22,7 +28,9 @@ def generate_random_ascii(length = 10):
 # CSV file with columns: full name, email, phone
 # phone unique
 
-def gen_test_data(filename, rows=100, header=False):
+def gen_test_data(filename, rows=10, header=False):
+    # Filename can be a text string or LocalPath or maybe something else
+    logging.info('Generate %s rows of testdata in file: ' + str(filename), rows)
     phonelist = random.sample(range(100000000,999999999), rows)
     with open (filename, 'w', newline='') as outfile:
         csv_file_writer = csv.writer(outfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
