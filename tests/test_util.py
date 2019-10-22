@@ -26,7 +26,7 @@ class TestToken():
     
 class TestTestData():
     def test_gen_data(self, tmpdir):
-        rows  = 1000
+        rows  = 3
         outfile = tmpdir.mkdir("test_gen_data").join("testdata.csv")
         gen_test_data(outfile, rows)
         x = 0
@@ -37,7 +37,7 @@ class TestTestData():
         assert(x == rows)
   
     def test_gen_data_header(self, tmpdir):
-        rows = 10
+        rows = 3
         outfile = tmpdir.mkdir("test_gen_data").join("testdata1.csv")
         gen_test_data(outfile, rows, header=True)
         x = 0
