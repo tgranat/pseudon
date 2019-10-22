@@ -1,7 +1,12 @@
 import sys
 import getopt
+import logging
 
 from pseudon.util import gen_test_data 
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, 
+                    format='%(asctime)-15s %(levelname)-5s %(module)s.%(funcName)s() %(message)s')
 
 def main():
     print("main() in __main__.py %s", __name__)
@@ -16,7 +21,6 @@ def main():
     argv = sys.argv[1:]
     gen_data_file = ''
     gen_data_file_rows = 0
-    
     try:
         opts, args = getopt.getopt(argv, UNIXOPTS, GNUOPTS)
         print(opts)
@@ -36,6 +40,7 @@ def main():
         sys.exit(2)
 
 # Generate test data file
+
     if gen_data_file:
         if gen_data_file_rows <= 0:
             gen_test_data(gen_data_file)
