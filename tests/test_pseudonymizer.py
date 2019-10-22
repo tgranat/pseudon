@@ -1,5 +1,6 @@
 from pseudon.pseudonymizer import Pseudonymizer
-from pseudon.util import generate_token_hex
+from pseudon.util import generate_token_hex, gen_test_data
+from _pytest.tmpdir import tmpdir
 
 #import pyffx
 
@@ -24,6 +25,23 @@ def test_update_row_asc():
     assert(result_row[0] == 'abcde')
     assert(result_row[1] == '12345678')
     assert(result_row[2] != 'cdefGHIJ%& -.!')
+    
+def test_run_job(tmpdir):
+        origdatafile = tmpdir.join("origdata.csv")
+        gen_test_data(origdatafile, 5)
+        resultdatafile = tmpdir.join("resultdata.csv")
+        p = Pseudonymizer()
+        p.run_job(origdatafile, resultdatafile, 2, 'num', False)
+ 
+        x = 0
+        with open (resultdatafile, 'r') as f:
+            for line in f:
+                print(line)
+                x += 1
+        assert(x == 5)
+
+    
+    
     
 #def test_pyffx():
 #    p = Pseudonymizer()

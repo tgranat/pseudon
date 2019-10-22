@@ -36,10 +36,10 @@ class Pseudonymizer():
         return row
    
 # Run job:
-#  specify file info:
-#  column_num, column_type, header_present=False,
+#  
 # column_num starts with 1 (first column)
-#  column type can be: num, asc, (email, full name etc. maybe not implement)
-#  In and out files
+# column type can be: num, asc, (email, full name etc. maybe not implement)
+# In and out files
     def run_job(self, infile, outfile, column_num=1, column_type='num', header_present=False):
+        
         return

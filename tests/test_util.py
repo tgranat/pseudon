@@ -3,7 +3,7 @@ generate_token_bytes, \
 generate_token_hex,\
 generate_token_urlsafe,\
 gen_test_data,\
-generate_random_ascii
+generate_random_limited_ascii
 
 class TestToken():
     def test_generate_token_bytes(self):
@@ -47,5 +47,5 @@ class TestTestData():
         assert(x == rows + 1)      
         
     def test_gen_ascii(self):
-        assert(len(generate_random_ascii(7)) == 7)
+        assert(len(generate_random_limited_ascii(7)) == 7)
         
