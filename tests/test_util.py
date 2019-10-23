@@ -39,7 +39,7 @@ class TestTestData():
     def test_gen_data_header(self, tmpdir):
         rows = 3
         outfile = tmpdir.mkdir("test_gen_data").join("testdata1.csv")
-        gen_test_data(outfile, rows, header=True)
+        gen_test_data(outfile, rows, header=True, usedelimiter=';')
         x = 0
         with open (outfile, 'r') as f:
             for line in f:

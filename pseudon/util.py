@@ -32,19 +32,19 @@ def generate_random_printable(length = 10):
 
 # Generate limited random printable character text string, for test purposes 
 def generate_random_limited_printable(length = 10):
-    chars = string.ascii_letters + string.digits + ' ' + '!@#$%&()=?+[]{}*;,:.'
+    chars = string.ascii_letters + string.digits + ' ' + '!@#$%&()=?+[]{}*;:.'
     return ( ''.join(random.choice(chars) for i in range(length)))
        
 # Generate test data: 
 # CSV file with columns: full name, email, phone
 # phone unique
 
-def gen_test_data(filename, rows=10, header=False):
+def gen_test_data(filename, rows=10, header=False, usedelimiter=','):
     # Filename can be a text string or LocalPath or maybe something else
     logging.info('Generate %s rows of testdata in file: ' + str(filename), rows)
     phonelist = random.sample(range(100000000,999999999), rows)
     with open (filename, 'w', newline='') as outfile:
-        csv_file_writer = csv.writer(outfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        csv_file_writer = csv.writer(outfile, delimiter=usedelimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL)
         if header:
             csv_file_writer.writerow(['Full name', 'Email', 'Phone', 'Random'])
         for phone in phonelist:
