@@ -1,3 +1,9 @@
+# Simple tool to pseudonymize data in specified column in CSV file
+# 
+# This version handles one column at a time.  
+#
+# Will probably need some tweaking to suit your needs
+
 import sys
 import getopt
 import logging
