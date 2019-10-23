@@ -6,7 +6,6 @@ import string
 
 logger = logging.getLogger(__name__)
 
-
 # Return byte string containing nbytes number of bytes.
 def generate_token_bytes(nbytes = 16):
     return secrets.token_bytes(nbytes)
@@ -36,11 +35,10 @@ def generate_random_limited_printable(length = 10):
     return ( ''.join(random.choice(chars) for i in range(length)))
        
 # Generate test data: 
-# CSV file with columns: full name, email, phone
-# phone unique
+# CSV file with columns: full name, email, phone, random string
+# phone is unique
 
 def gen_test_data(filename, rows=10, header=False, usedelimiter=','):
-    # Filename can be a text string or LocalPath or maybe something else
     logging.info('Generate %s rows of testdata in file: ' + str(filename), rows)
     phonelist = random.sample(range(100000000,999999999), rows)
     with open (filename, 'w', newline='') as outfile:
@@ -54,5 +52,3 @@ def gen_test_data(filename, rows=10, header=False, usedelimiter=','):
             csv_file_writer.writerow([firstname.capitalize() + ' ' + lastname.capitalize(),
                 lastname + '@example.com', '0' + str(phone),
                 generate_random_limited_printable(15)])
-
-
