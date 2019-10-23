@@ -13,7 +13,7 @@ from pseudon.util import gen_test_data
 from pseudon.pseudonymizer import Pseudonymizer
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG, 
+logging.basicConfig(level=logging.INFO, 
                     format='%(asctime)-15s %(levelname)-5s %(module)s.%(funcName)s() %(message)s')
 
 COLTYPES = ['num', 'asc']
@@ -32,13 +32,9 @@ HELP = '-i infile -o outfile -c column_num -t column_type [-r -d delimiter_char]
 def main():
     logging.debug( __name__)
     
-    #    ' (for test only: -g test_data_file -q rows -h)'
-    #'\n-g file\tGenerate test data file' 
-    #'\n-r rows\tNumber of rows in test data file' 
-
-            
-    # pseudon -g --gen_test_data= -q --rows=       
-    # pseudon -i --infile= -o outfile= -c --colnum= -t --coltype= [-r --header -d --delimiter=',']
+    # for test you can use this to create a test data file: -g test_data_file -q rows -h)
+    #' -g file   Generate test data file
+    #' -r rows   Number of rows in test data file
     
     argv = sys.argv[1:]
     gen_data_file = ''
@@ -58,6 +54,7 @@ def main():
         for opt, value in opts:
             if opt in ('-h', '--help'):
                 print('usage: %s' % sys.argv[0], HELP)
+                sys.exit(0)
             if opt in ('-i', '--infile'):
                 infile = value
             if opt in ('-o', '--outfile'):
