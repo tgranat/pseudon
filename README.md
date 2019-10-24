@@ -1,5 +1,5 @@
 # pseudon
-Simple tool to pseudonymize data in a specified column in a CSV file
+Simple tool I made to pseudonymize data in a specified column in a CSV file. Works fine with numeric data, could need some more thinking and improvement how to handle text data.
 
 Pseudonymization of data can be used for example when creating test data from real world data.
 The pseudonymization process encrypts data using a random (almost) AES128 key and format preserving encryption (FPE),
