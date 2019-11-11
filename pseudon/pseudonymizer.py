@@ -30,7 +30,8 @@ class Pseudonymizer():
     def _update_row(self, column_num, column_type, row, not_allowed_chars=NOT_ALLOWED_CHARS):
         logging.debug('Pseudonymize {}'.format(row[column_num-1]))
         if column_type == 'num':
-            encrypter = pyffx.Integer(self.secret_key_bytes, len(row[column_num-1]))
+            #encrypter = pyffx.Integer(self.secret_key_bytes, len(row[column_num-1]))
+            encrypter = pyffx.String(self.secret_key_bytes, alphabet = "0123456789", length = len(row[column_num-1]))
             row[column_num-1] = encrypter.encrypt(row[column_num-1])
         elif column_type == 'asc':
             # Using string.printable to specify valid alphabet. Remove any
