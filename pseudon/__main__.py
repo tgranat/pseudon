@@ -4,6 +4,8 @@
 #
 # Will probably need some tweaking to suit your needs
 
+# TODO: test out using 'click' to create CLI
+
 import sys
 import getopt
 import logging

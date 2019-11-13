@@ -31,6 +31,7 @@ class Pseudonymizer():
         logging.debug('Pseudonymize {}'.format(row[column_num-1]))
         if column_type == 'num':
             #encrypter = pyffx.Integer(self.secret_key_bytes, len(row[column_num-1]))
+            # TODO: should there be a 'phone' column type?
             encrypter = pyffx.String(self.secret_key_bytes, alphabet = "0123456789", length = len(row[column_num-1]))
             row[column_num-1] = encrypter.encrypt(row[column_num-1])
         elif column_type == 'asc':
